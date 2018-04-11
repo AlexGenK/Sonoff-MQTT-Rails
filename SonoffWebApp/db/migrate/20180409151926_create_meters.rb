@@ -5,7 +5,7 @@ class CreateMeters < ActiveRecord::Migration[5.1]
       t.string :topic
       t.integer :k_trans
       t.integer :alarm_value
-      t.boolean :alarm_om
+      t.boolean :alarm_on
 
       t.timestamps
 

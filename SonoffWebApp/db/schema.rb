@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409152223) do
+ActiveRecord::Schema.define(version: 20180411100408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20180409152223) do
     t.float "factor"
     t.integer "voltage"
     t.float "current"
-    t.integer "alarm_value"
-    t.boolean "alarm_on"
+    t.integer "alarm_value", default: 0
+    t.boolean "alarm_on", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "meter_id"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20180409152223) do
   create_table "meters", force: :cascade do |t|
     t.string "name"
     t.string "topic"
-    t.integer "k_trans"
-    t.integer "alarm_value"
-    t.boolean "alarm_om"
+    t.integer "k_trans", default: 1
+    t.integer "alarm_value", default: 0
+    t.boolean "alarm_on", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "consumer_id"
