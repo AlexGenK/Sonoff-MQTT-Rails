@@ -1,1 +1,16 @@
 <h1>Index of consumers</h1>
+
+<%= link_to '>>> Create new consumer <<<', new_consumer_path %>
+
+<% if @consumers %>
+	<% @consumers.each do |consumer| %>
+		<p>Name: <%= consumer.name %></p>
+		<p>Phone number: <%= consumer.phone %></p>
+		<%= link_to 'show', consumer %> |
+		<%= link_to 'edit', edit_consumer_path(consumer) %> |
+		<%= link_to 'delete', consumer, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<hr>
+	<% end %>
+<% else %>
+	<p>No consumers!</p>
+<% end %>

@@ -1,0 +1,6 @@
+<h3><%= @consumer.name %></h3>
+<p>Phone: <%= @consumer.phone %></p>
+
+<%= link_to '<<< to index', consumers_path %> |
+<%= link_to 'edit', edit_consumer_path(@consumer) %> |
+<%= link_to 'delete', @consumer, method: :delete, data: { confirm: 'Are you sure?' } %>
