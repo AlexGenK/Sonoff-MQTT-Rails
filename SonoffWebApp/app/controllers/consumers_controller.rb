@@ -13,7 +13,7 @@ class ConsumersController < ApplicationController
   def create
     @consumer = Consumer.new(consumer_params)
     if @consumer.save
-      redirect_to consumers_path
+      redirect_to @consumer
     else
       render :new
     end
