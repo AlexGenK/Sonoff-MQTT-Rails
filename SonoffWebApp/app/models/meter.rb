@@ -5,6 +5,6 @@ class Meter < ApplicationRecord
   private
 
   def generate_topic
-    self.topic = "#{self.consumer_id}-#{SecureRandom.uuid}"
+    self.topic = "#{self.consumer_id.to_s(16)}-#{SecureRandom.urlsafe_base64}".truncate(32, omission: '')
   end
 end
