@@ -32,7 +32,7 @@ class ElectricalParams
 
 	# получение номера счетчика из топика
 	def get_meter_id(topic)
-	  %r{/(.+)/}.match(topic)[1].split('-')[0]
+	  %r{/(.+)/}.match(topic)[1].split('-')[0].to_i(16)
 	end
 
 end
