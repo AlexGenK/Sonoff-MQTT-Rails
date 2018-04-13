@@ -33,10 +33,10 @@ MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
                 (meter_id, time, total, yesterday, today, period, power, factor, voltage, current,
                 created_at, updated_at)
                 VALUES
-                (0, '#{line_params.time}', #{line_params.total}, #{line_params.yesterday}, 
-                #{line_params.today}, #{line_params.period}, #{line_params.power},
-                #{line_params.factor}, #{line_params.voltage}, #{line_params.current},
-                '#{Time.now}', '#{Time.now}')")
+                ('#{line_params.meter_id}', '#{line_params.time}', #{line_params.total},
+                #{line_params.yesterday}, #{line_params.today}, #{line_params.period},
+                #{line_params.power}, #{line_params.factor}, #{line_params.voltage},
+                #{line_params.current}, '#{Time.now}', '#{Time.now}')")
 
     # отправка сообщения пользователю о превышении граничной мощности
     # if (result.first['alarm_on'] != 0) && (line_params.period > result.first['alarm_power'])
