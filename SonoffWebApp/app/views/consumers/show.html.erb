@@ -13,6 +13,7 @@
 		<p>Coefficient of transformation: <%= meter.k_trans %></p>
 		<p>Alarm value: <%= meter.alarm_value %></p>
 		<p>Alarm On: <%= meter.alarm_on ? 'YES'  : 'NO' %></p>
+		<%= link_to 'show', [@consumer, meter] %>
 		<%= link_to 'delete', [@consumer, meter], method: :delete, data: { confirm: 'Are you sure?' } %>
 		<hr>
 	<% end %>

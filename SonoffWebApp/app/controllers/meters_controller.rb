@@ -1,7 +1,11 @@
 class MetersController < ApplicationController
 
-  before_action :set_meter, only: [:destroy]
+  before_action :set_meter, only: [:destroy, :show]
   before_action :set_consumer, only: [:create, :destroy]
+
+  def show
+    @energies = @meter.energies.all.order(:time)
+  end
 
   def create
     @meter = @consumer.meters.new(meter_params)
