@@ -1,4 +1,13 @@
 <h3><%= @meter.consumer.name %> - <%= @meter.name %></h3>
+
+<%= line_chart @chart_data, library: {curveType: "none", pointSize: 0, theme: "maximized", 
+									  				plotOptions: {spline: {marker: {enabled: false}}},
+									  				 legend: {align: 'right',
+														      verticalAlign: 'top',
+														      x: -10,
+														      y: 0,
+														      floating: true}} %>
+														      
 <% @energies.each do |energy| %>
 	<p>
 		<%= energy.time %> - 

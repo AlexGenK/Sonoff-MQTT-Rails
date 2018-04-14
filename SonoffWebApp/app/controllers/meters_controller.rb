@@ -4,7 +4,8 @@ class MetersController < ApplicationController
   before_action :set_consumer, only: [:create, :destroy]
 
   def show
-    @energies = @meter.energies.all.order(:time)
+    @energies = @meter.energies.last(10)
+    @chart_data = [{name: 'Power', data: {'10:00' => 100, '11:00' => 120, '12:00' => 140, '13:00' => 90, '14:00' => 110}}]
   end
 
   def create
