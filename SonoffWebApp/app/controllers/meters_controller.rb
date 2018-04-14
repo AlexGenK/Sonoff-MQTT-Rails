@@ -5,7 +5,7 @@ class MetersController < ApplicationController
 
   def show
     @energies = @meter.energies.last(10)
-    @chart_data = [{name: 'Power', data: {'10:00' => 100, '11:00' => 120, '12:00' => 140, '13:00' => 90, '14:00' => 110}}]
+    @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{Time.now - (24 * 60 * 60)}'")
   end
 
   def create
