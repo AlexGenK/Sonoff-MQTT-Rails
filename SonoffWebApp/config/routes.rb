@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :consumers do
   	resources :meters
   end
+
+  get 'open/:id', to: 'open#show'
   
   root 'consumers#index'
 end

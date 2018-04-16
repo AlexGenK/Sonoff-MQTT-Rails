@@ -9,7 +9,7 @@
 <% unless @meters.empty? %>
 	<% @meters.each do |meter| %>
 		<p>Name: <%= meter.name %></p>
-		<p>Topic (UUID): <%= meter.topic %></p>
+		<p>Topic (UUID): <%= link_to meter.topic, "/open/#{meter.topic}" %></p>
 		<p>Coefficient of transformation: <%= meter.k_trans %></p>
 		<p>Alarm value: <%= meter.alarm_value %></p>
 		<p>Alarm On: <%= meter.alarm_on ? 'YES'  : 'NO' %></p>
