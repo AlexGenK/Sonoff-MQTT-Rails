@@ -1,7 +1,7 @@
 class MetersController < ApplicationController
 
-  before_action :set_meter, only: [:destroy, :show]
-  before_action :set_consumer, only: [:create, :destroy]
+  before_action :set_meter, only: [:destroy, :show, :edit, :update]
+  before_action :set_consumer, only: [:create, :destroy, :edit, :update]
 
   def show
     @energies = @meter.energies.last(10)
@@ -22,6 +22,17 @@ class MetersController < ApplicationController
       redirect_to @consumer
     else
       redirect_to :back
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @meter.update(meter_params)
+      redirect_to @consumer
+    else
+      render :edit
     end
   end
 

@@ -13,7 +13,8 @@
 		<p>Coefficient of transformation: <%= meter.k_trans %></p>
 		<p>Alarm value: <%= meter.alarm_value %></p>
 		<p>Alarm On: <%= meter.alarm_on ? 'YES'  : 'NO' %></p>
-		<%= link_to 'show', [@consumer, meter] %>
+		<%= link_to 'show', [@consumer, meter] %> |
+		<%= link_to 'edit', edit_consumer_meter_path(@consumer, meter) %> |
 		<%= link_to 'delete', [@consumer, meter], method: :delete, data: { confirm: 'Are you sure?' } %>
 		<hr>
 	<% end %>
@@ -22,15 +23,4 @@
 <% end %>
 <h4>Add meter</h4>
 
-<%= form_for [@consumer, @meter] do |f| %>
-	<%= f.label :name, "Name" %>
-	<%= f.text_field :name %>
-	<%= f.label :k_trans, "Coef. of transform." %>
-	<%= f.number_field :k_trans %>
-	<%= f.label :alarm_value, "Alarm value" %>
-	<%= f.number_field :alarm_value %>
-	<%= f.label :alarm_on, "Alarm on" %>
-	<%= f.check_box :alarm_on %>
-
-	<%= f.submit %>
-<% end %>
+<%= render '/meters/form' %>
