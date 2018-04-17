@@ -22,21 +22,21 @@ MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
     # получение текущих параметров электросети
     line_params = ElectricalParams.new(topic, message)
 
-    # чтение последней записи из БД и создание новой записи с текущими данными
-    # об энергопотреблении и продублированными данными о граничной мощности
-    # из последней записи
-    # result = client.query('SELECT alarm_power, alarm_on
-    #                        FROM sonoff.pow
-    #                        ORDER BY id DESC LIMIT 1')
+    # чтение данных о граничной мощности и необходимости уведомления
+    # о ее превышении
+    result = connect.exec("SELECT alarm_value, alarm_on
+                           FROM meters
+                           WHERE id = #{line_params.meter_id}")
 
     connect.exec("INSERT INTO energies
                 (meter_id, time, total, yesterday, today, period, power, factor, voltage, current,
-                created_at, updated_at)
+                created_at, updated_at, alarm_value, alarm_on)
                 VALUES
-                ('#{line_params.meter_id}', '#{line_params.time}', #{line_params.total},
+                (#{line_params.meter_id}, '#{line_params.time}', #{line_params.total},
                 #{line_params.yesterday}, #{line_params.today}, #{line_params.period},
                 #{line_params.power}, #{line_params.factor}, #{line_params.voltage},
-                #{line_params.current}, '#{Time.now}', '#{Time.now}')")
+                #{line_params.current}, '#{Time.now}', '#{Time.now}', 
+                #{result[0]['alarm_value']}, #{result[0]['alarm_on'] == 't' ? 'true' : 'false'})")
 
     # отправка сообщения пользователю о превышении граничной мощности
     # if (result.first['alarm_on'] != 0) && (line_params.period > result.first['alarm_power'])
