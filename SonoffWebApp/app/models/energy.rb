@@ -10,7 +10,7 @@ class Energy < ApplicationRecord
       pow_data[row['time']] = row.period
       alarm_data[row['time']] = row.alarm_value
     end
-    alarm_color = last.alarm_on? ? '#ff6666' : '#bfbfbf'
+    alarm_color = result.last.alarm_on? ? '#ff6666' : '#bfbfbf'
     return [{name: 'Power', data: pow_data}, {name: 'Alarm lewel', data: alarm_data, color: alarm_color}]
   end
 end
