@@ -1,0 +1,58 @@
+<div class="panel panel-default">	
+	<div class="panel-heading">Power consumption <%= @chart_header %> (Time / Wh)</div>
+	<div class="panel-body">
+		<div class='row'>
+			<div class='col'>
+				<%= line_chart @chart_data, library: {curveType: "none", pointSize: 0, theme: "maximized", 
+									  				plotOptions: {spline: {marker: {enabled: false}}},
+									  				 legend: {align: 'right',
+														      verticalAlign: 'top',
+														      x: -10,
+														      y: 0,
+														      floating: true}} %>
+			</div>
+		</div>
+		<br>
+		<form>
+			<div class='form-group'>
+				<div class="radio">
+			  		<label>
+			    		<input type="radio" name="period" id="optionsPeriod1" value="l24h" <%= params[:period]=="l24h" ? "checked" : "" %> >
+			    		last 24 hours
+			  		</label>
+				</div>
+				<div class="radio">
+					  <label>
+					    <input type="radio" name="period" id="optionsPeriod2" value="given" <%= params[:period]=="given" ? "checked" : "" %> >
+					    a given period
+					  </label>
+				</div>
+				<div class="row">
+				    <div class='col-sm-6'>
+				        <div class="form-group">
+				        	<label for="startTimeField" class="control-label">From:</label>
+				            <div class='input-group date' id='startTime'>
+				                <input type='text' class="form-control" id="startTimeField" name='startTime' value='<%= params[:startTime] %>'>
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+				    <div class='col-sm-6'>
+				        <div class="form-group">
+				        	<label for="endTimeField" class="control-label">To:</label>
+				            <div class='input-group date' id='endTime'>
+				                <input type='text' class="form-control" id='endTimeField' name='endTime' value='<%= params[:endTime] %>'>
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+				</div>				    
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Refresh chart</button>
+		</form>
+	</div>
+</div>
