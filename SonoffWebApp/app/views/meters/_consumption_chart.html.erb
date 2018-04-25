@@ -1,6 +1,6 @@
-<div class="panel panel-default">	
-	<div class="panel-heading">Power consumption <%= @chart_header %> (Time / Wh)</div>
-	<div class="panel-body">
+<div class="card">	
+	<div class="card-header">Power consumption <%= @chart_header %> (Time / Wh)</div>
+	<div class="card-body">
 		<div class='row'>
 			<div class='col'>
 				<%= line_chart @chart_data, library: {curveType: "none", pointSize: 0, theme: "maximized", 
