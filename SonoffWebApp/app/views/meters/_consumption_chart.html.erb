@@ -27,32 +27,81 @@
 					    a given period
 					  </label>
 				</div>
+				<!--
 				<div class="row">
 				    <div class='col-sm-6'>
 				        <div class="form-group">
-				        	<label for="startTimeField" class="control-label">From:</label>
-				            <div class='input-group date' id='startTime'>
-				                <input type='text' class="form-control" id="startTimeField" name='startTime' value='<%= params[:startTime] %>'>
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
+				        	<label for="startTime" class="control-label">From:</label>
+				            <div class='input-group date' id='startTime' data-target-input="nearest">
+				                <input type='text' class="form-control datetimepicker-input" data-target="#startTime" name='startTime' data-toggle="datetimepicker" value='<%= params[:startTime] %>'>
+				                <div class="input-group-append" data-target="#startTime" data-toggle="datetimepicker">
+                    				<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                				</div>
 				            </div>
 				        </div>
 				    </div>
 				    <div class='col-sm-6'>
 				        <div class="form-group">
 				        	<label for="endTimeField" class="control-label">To:</label>
-				            <div class='input-group date' id='endTime'>
-				                <input type='text' class="form-control" id='endTimeField' name='endTime' value='<%= params[:endTime] %>'>
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
+				            <div class='input-group date' id='endTime' data-target-input="nearest">
+				                <input type='text' class="form-control datetimepicker-input" data-target="#endTime" name='endTime' data-toggle="datetimepicker" value='<%= params[:endTime] %>'>
+				                <div class="input-group-append" data-target="#endTime" data-toggle="datetimepicker">
+				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+				                </div>
 				            </div>
 				        </div>
 				    </div>
 				</div>				    
+				-->
+
+				<div class='row'>
+				    <div class='col-sm-6'>
+				        <div class="form-group">
+				           <div class="input-group date" id="startTimeID" data-target-input="nearest">
+				                <input type="text" class="form-control datetimepicker-input" data-target="#startTimeID" data-toggle="datetimepicker" name="startTime" value='<%= params[:startTime] %>' />
+				                <div class="input-group-append" data-target="#startTimeID" data-toggle="datetimepicker">
+				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				    <div class='col-sm-6'>
+				        <div class="form-group">
+				           <div class="input-group date" id="endTimeID" data-target-input="nearest">
+				                <input type="text" class="form-control datetimepicker-input" data-target="#endTimeID" data-toggle="datetimepicker" name="endTime" value='<%= params[:endTime] %>' />
+				                <div class="input-group-append" data-target="#endTimeID" data-toggle="datetimepicker">
+				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Refresh chart</button>
 		</form>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(function () {
+	    $('#startTimeID').datetimepicker({
+	        locale: 'ru'
+	    });
+	    $('#endTimeID').datetimepicker({
+	        useCurrent: false,
+	        locale: 'ru'
+	    });
+	    $("#startTimeID").on("change.datetimepicker", function (e) {
+	        $('#endTimeID').datetimepicker('minDate', e.date);
+	    });
+	    $("#endTimeID").on("change.datetimepicker", function (e) {
+	        $('#startTimeID').datetimepicker('maxDate', e.date);
+	    });
+	    $("#startTimeID").bind("click", function() {
+	        $("#optionsPeriod2").click()
+	    });
+	    $("#endTimeID").bind("click", function() {
+	            $("#optionsPeriod2").click()
+	    });
+	});
+</script>

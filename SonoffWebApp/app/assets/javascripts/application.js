@@ -11,10 +11,13 @@
 // about supported directives.
 //
 //= require jquery3
+//= require moment
+//= require moment/ru.js
 //= require popper
 //= require bootstrap
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 //= require highcharts
 //= require chartkick
+//= require tempusdominus-bootstrap-4.js
+//= require_tree .
