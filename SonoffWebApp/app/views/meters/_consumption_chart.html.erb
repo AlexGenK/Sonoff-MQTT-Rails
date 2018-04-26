@@ -81,27 +81,3 @@
 		</form>
 	</div>
 </div>
-
-<script type="text/javascript">
-	$(function () {
-	    $('#startTimeID').datetimepicker({
-	        locale: 'ru'
-	    });
-	    $('#endTimeID').datetimepicker({
-	        useCurrent: false,
-	        locale: 'ru'
-	    });
-	    $("#startTimeID").on("change.datetimepicker", function (e) {
-	        $('#endTimeID').datetimepicker('minDate', e.date);
-	    });
-	    $("#endTimeID").on("change.datetimepicker", function (e) {
-	        $('#startTimeID').datetimepicker('maxDate', e.date);
-	    });
-	    $("#startTimeID").bind("click", function() {
-	        $("#optionsPeriod2").click()
-	    });
-	    $("#endTimeID").bind("click", function() {
-	            $("#optionsPeriod2").click()
-	    });
-	});
-</script>
