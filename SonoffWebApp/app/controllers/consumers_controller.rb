@@ -15,7 +15,6 @@ class ConsumersController < ApplicationController
     if @consumer.save
       redirect_to @consumer
     else
-      flash[:alert] = @consumer.errors.full_messages[0]
       render :new
     end
   end
