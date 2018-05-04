@@ -20,7 +20,8 @@ class MetersController < ApplicationController
     if @meter.save
       redirect_to @consumer
     else
-      render '/consumer/show'
+      @meters = @consumer.meters.all.order(:name)
+      render '/consumers/show'
     end
   end
 

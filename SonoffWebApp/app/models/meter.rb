@@ -3,6 +3,9 @@ class Meter < ApplicationRecord
   has_many :energies
   belongs_to :consumer
 
+  validates :name, presence: true
+  validates :k_trans, numericality: { greater_than: 0 }
+
   private
 
   def generate_topic
