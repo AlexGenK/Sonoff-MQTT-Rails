@@ -5,12 +5,18 @@ class MetersController < ApplicationController
 
   def show
     params[:period] ||= 'l24h'
-    @energies = @meter.energies.last(10)
     if params[:period] == 'l24h'
       @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{Time.now - (24 * 60 * 60)}'")
     elsif params[:period] == 'given'
-      @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{convert_time(params[:startTime])}'
-                                                  AND time < '#{convert_time(params[:endTime])}'")
+      @start_time = convert_time(params[:startTime])
+      @end_time = convert_time(params[:endTime])
+      if @start_time && @end_time
+        @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{@start_time}' AND time < '#{@end_time}'")
+      else
+        flash[:alert] = "Invalid given period format"
+        params[:period] = 'l24h'
+        redirect_to action: "show"
+      end
     end
     @chart_header = set_chart_header
   end
@@ -61,7 +67,11 @@ class MetersController < ApplicationController
 
   # парсинг текстового представления даты/времени и создание из него объекта DateTime
   def convert_time(time)
-    Time.strptime(time, '%d.%m.%Y %H:%M')
+    begin
+      Time.strptime(time, '%d.%m.%Y %H:%M')
+    rescue ArgumentError
+      false
+    end
   end
 
   def meter_params
