@@ -7,15 +7,15 @@ class MetersController < ApplicationController
     params[:period] ||= 'l24h'
     if params[:period] == 'l24h'
       @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{Time.now - (24 * 60 * 60)}'")
+      @start_time = true
+      @end_time = true
     elsif params[:period] == 'given'
       @start_time = convert_time(params[:startTime])
       @end_time = convert_time(params[:endTime])
       if @start_time && @end_time
         @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{@start_time}' AND time < '#{@end_time}'")
       else
-        flash[:alert] = "Invalid given period format"
-        params[:period] = 'l24h'
-        redirect_to action: "show"
+        render :show
       end
     end
     @chart_header = set_chart_header

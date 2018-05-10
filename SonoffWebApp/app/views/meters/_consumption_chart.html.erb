@@ -32,10 +32,11 @@
 				        <div class="form-group">
 				        	<label for="startTimeID" class="control-label">From:</label>
 				            <div class="input-group date" id="startTimeID" data-target-input="nearest">
-				                <input type="text" class="form-control datetimepicker-input" data-target="#startTimeID" data-toggle="datetimepicker" name="startTime" value='<%= params[:startTime] %>' />
+				                <input type="text" class="form-control datetimepicker-input <%= 'is-invalid' unless @start_time %>" data-target="#startTimeID" data-toggle="datetimepicker" name="startTime" value='<%= params[:startTime] %>' />
 				                <div class="input-group-append" data-target="#startTimeID" data-toggle="datetimepicker">
 				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				                </div>
+				                <div class="invalid-feedback">Invalid start time</div>
 				            </div>
 				        </div>
 				    </div>
@@ -43,10 +44,11 @@
 				        <div class="form-group">
 				        	<label for="endTimeID" class="control-label">To:</label>
 				            <div class="input-group date" id="endTimeID" data-target-input="nearest">
-				                <input type="text" class="form-control datetimepicker-input" data-target="#endTimeID" data-toggle="datetimepicker" name="endTime" value='<%= params[:endTime] %>' />
+				                <input type="text" class="form-control datetimepicker-input <%= 'is-invalid' unless @end_time %>" data-target="#endTimeID" data-toggle="datetimepicker" name="endTime" value='<%= params[:endTime] %>' />
 				                <div class="input-group-append" data-target="#endTimeID" data-toggle="datetimepicker">
 				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				                </div>
+				                <div class="invalid-feedback">Invalid end time</div>
 				            </div>
 				        </div>
 				    </div>
