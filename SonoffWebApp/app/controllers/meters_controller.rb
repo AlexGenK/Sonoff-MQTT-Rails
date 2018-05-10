@@ -18,7 +18,7 @@ class MetersController < ApplicationController
         render :show
       end
     end
-    @chart_header = set_chart_header
+    @chart_header = set_chart_header(params)
   end
 
   def create
@@ -61,12 +61,12 @@ class MetersController < ApplicationController
   end
 
   # установка заголовка таблицы
-  def set_chart_header
-    params[:period] == 'l24h' ? 'in the last 24 hours' : "from #{params[:startTime]} to #{params[:endTime]}"
+  def self.set_chart_header(prm)
+    prm[:period] == 'l24h' ? 'in the last 24 hours' : "from #{prm[:startTime]} to #{prm[:endTime]}"
   end
 
   # парсинг текстового представления даты/времени и создание из него объекта DateTime
-  def convert_time(time)
+  def self.convert_time(time)
     begin
       Time.strptime(time, '%d.%m.%Y %H:%M')
     rescue ArgumentError
