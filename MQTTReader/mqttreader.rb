@@ -15,7 +15,7 @@ puts "Let's go!"
 # устанавливаем соединение с MQTT брокером
 MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
   # читаем сообщения от MQTT брокера
-  c.get(ENV['POW_MQTT_TOPIC']) do |topic, message|
+  c.get(ENV['POW_MQTT_SENSORS_TOPIC']) do |topic, message|
     puts '--------PG--------'
     puts "#{topic}: #{message}"
 
