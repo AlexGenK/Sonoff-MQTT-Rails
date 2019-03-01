@@ -10,15 +10,15 @@ class MetersController < ApplicationController
       @start_time = true
       @end_time = true
     elsif params[:period] == 'given'
-      @start_time = convert_time(params[:startTime])
-      @end_time = convert_time(params[:endTime])
+      @start_time = MetersController.convert_time(params[:startTime])
+      @end_time = MetersController.convert_time(params[:endTime])
       if @start_time && @end_time
         @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{@start_time}' AND time < '#{@end_time}'")
       else
         render :show
       end
     end
-    @chart_header = set_chart_header(params)
+    @chart_header = MetersController.set_chart_header(params)
   end
 
   def create
