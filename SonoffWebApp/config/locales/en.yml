@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  pow_chart:
+    last24: "in the last 24 hours"
