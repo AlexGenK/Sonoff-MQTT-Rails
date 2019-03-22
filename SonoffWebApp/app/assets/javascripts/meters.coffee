@@ -3,6 +3,30 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
+  Highcharts.setOptions lang:
+    shortMonths: [
+      'Январь'
+      'Февраль'
+      'Март'
+      'Апрель'
+      'Май'
+      'Июнь'
+      'Июль'
+      'Август'
+      'Сентябрь'
+      'Октябрь'
+      'Ноябрь'
+      'Декабрь'
+    ]
+    weekdays: [
+      'Вс.'
+      'Пн.'
+      'Вт.'
+      'Ср.'
+      'Чт.'
+      'Пт.'
+      'Сб.'
+    ]
   $('#startTimeID').datetimepicker locale: 'ru'
   $('#endTimeID').datetimepicker
     useCurrent: false
