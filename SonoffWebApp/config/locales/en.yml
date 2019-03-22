@@ -33,3 +33,16 @@ en:
   hello: "Hello world"
   pow_chart:
     last24: "in the last 24 hours"
+    period: "from %{start_time} to %{end_time}"
+    header: "Power consumption %{period} (Time/Wh)"
+    power: "Power"
+    alarm: "Alarm lewel"
+    radio_last24: "last 24 hours"
+    radio_period: "a given period"
+    from: "From:"
+    to: "To:"
+    refresh: "Refresh chart"
+    invalid_start: "Invalid start time"
+    invalid_end: "Invalid end time"
+  dialog:
+    back: "<<< Back"

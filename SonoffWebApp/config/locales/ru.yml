@@ -2,3 +2,16 @@ ru:
   hello: "Привет"
   pow_chart:
     last24: "за последние 24 часа"
+    period: "c %{start_time} по %{end_time}"
+    header: "Потребление электроэнергии %{period} (Время/Вт*ч)"
+    power: "Мощность"
+    alarm: "Тревожный уровень"   
+    radio_last24: "последние 24 часа"
+    radio_period: "заданный период"
+    from: "С:"
+    to: "По:"
+    refresh: "Обновить график"
+    invalid_start: "Неверно задано время начала"
+    invalid_end: "Неверно задано время окончания"
+  dialog:
+    back: "<<< Вернуться"

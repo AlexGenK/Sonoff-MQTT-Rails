@@ -62,8 +62,8 @@ class MetersController < ApplicationController
 
   # установка заголовка таблицы
   def self.set_chart_header(prm)
-    variable_part = prm[:period] == 'l24h' ? I18n.t('pow_chart.last24') : "from #{prm[:startTime]} to #{prm[:endTime]}"
-    "Power consumption #{variable_part} (Time/Wh)"
+    variable_part = prm[:period] == 'l24h' ? I18n.t('pow_chart.last24') : I18n.t('pow_chart.period', start_time: prm[:startTime], end_time: prm[:endTime])
+    I18n.t('pow_chart.header', period: variable_part)
   end
 
   # парсинг текстового представления даты/времени и создание из него объекта DateTime

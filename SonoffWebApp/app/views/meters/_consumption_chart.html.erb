@@ -4,7 +4,7 @@
 		<div class='row'>
 			<div class='col'>
 				<%= line_chart @chart_data, library: {curveType: "none", pointSize: 0, theme: "maximized", 
-									  				plotOptions: {spline: {marker: {enabled: false}}},
+									  				 plotOptions: {spline: {marker: {enabled: false}}},
 									  				 legend: {align: 'right',
 														      verticalAlign: 'top',
 														      x: -10,
@@ -18,43 +18,43 @@
 				<div class="radio">
 			  		<label>
 			    		<input type="radio" name="period" id="optionsPeriod1" value="l24h" <%= params[:period]=="l24h" ? "checked" : "" %> >
-			    		last 24 hours
+			    		<%= t('pow_chart.radio_last24') %>
 			  		</label>
 				</div>
 				<div class="radio">
 					  <label>
 					    <input type="radio" name="period" id="optionsPeriod2" value="given" <%= params[:period]=="given" ? "checked" : "" %> >
-					    a given period
+					    <%= t('pow_chart.radio_period') %>
 					  </label>
 				</div>
 				<div class='row'>
 				    <div class='col-sm-6'>
 				        <div class="form-group">
-				        	<label for="startTimeID" class="control-label">From:</label>
+				        	<label for="startTimeID" class="control-label"><%= t('pow_chart.from') %></label>
 				            <div class="input-group date" id="startTimeID" data-target-input="nearest">
 				                <input type="text" class="form-control datetimepicker-input <%= 'is-invalid' unless @start_time %>" data-target="#startTimeID" data-toggle="datetimepicker" name="startTime" value='<%= params[:startTime] %>' />
 				                <div class="input-group-append" data-target="#startTimeID" data-toggle="datetimepicker">
 				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				                </div>
-				                <div class="invalid-feedback">Invalid start time</div>
+				                <div class="invalid-feedback"><%= t('pow_chart.invalid_start') %></div>
 				            </div>
 				        </div>
 				    </div>
 				    <div class='col-sm-6'>
 				        <div class="form-group">
-				        	<label for="endTimeID" class="control-label">To:</label>
+				        	<label for="endTimeID" class="control-label"><%= t('pow_chart.to') %></label>
 				            <div class="input-group date" id="endTimeID" data-target-input="nearest">
 				                <input type="text" class="form-control datetimepicker-input <%= 'is-invalid' unless @end_time %>" data-target="#endTimeID" data-toggle="datetimepicker" name="endTime" value='<%= params[:endTime] %>' />
 				                <div class="input-group-append" data-target="#endTimeID" data-toggle="datetimepicker">
 				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				                </div>
-				                <div class="invalid-feedback">Invalid end time</div>
+				                <div class="invalid-feedback"><%= t('pow_chart.invalid_end') %></div>
 				            </div>
 				        </div>
 				    </div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary btn-lg btn-block">Refresh chart</button>
+			<button type="submit" class="btn btn-primary btn-lg btn-block"><%= t('pow_chart.refresh') %></button>
 		</form>
 	</div>
 </div>
