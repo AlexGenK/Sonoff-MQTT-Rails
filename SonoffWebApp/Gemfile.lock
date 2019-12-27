@@ -114,7 +114,7 @@ GEM
     pg (1.1.4-x64-mingw32)
     popper_js (1.14.5)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.2)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -232,7 +232,7 @@ DEPENDENCIES
   jquery-rails
   momentjs-rails
   pg (>= 0.18, < 2.0)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.6)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
