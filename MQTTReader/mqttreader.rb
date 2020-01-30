@@ -29,9 +29,9 @@ MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
                            WHERE id = #{line_params.meter_id}")
 
     # если таких данных нет, то отключаем сигнализацию по граничной мощности
-    if result.num_tuples = 0
+    if result.num_tuples.zero?
       result = []
-      result[0] = {'alarm_value' => 0, 'alarm_on' => 'f'}
+      result[0] = { 'alarm_value' => 0, 'alarm_on' => 'f' }
     end
 
     connect.exec("INSERT INTO energies
@@ -41,7 +41,7 @@ MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
                 (#{line_params.meter_id}, '#{line_params.time}', #{line_params.total},
                 #{line_params.yesterday}, #{line_params.today}, #{line_params.period},
                 #{line_params.power}, #{line_params.factor}, #{line_params.voltage},
-                #{line_params.current}, '#{Time.now}', '#{Time.now}', 
+                #{line_params.current}, '#{Time.now}', '#{Time.now}',
                 #{result[0]['alarm_value']}, #{result[0]['alarm_on'] == 't' ? 'true' : 'false'})")
 
     # отправка сообщения пользователю о превышении граничной мощности
