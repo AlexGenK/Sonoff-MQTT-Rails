@@ -28,6 +28,12 @@ MQTT::Client.connect(ENV['POW_MQTT_HOST'], ENV['POW_MQTT_PORT'].to_i) do |c|
                            FROM meters
                            WHERE id = #{line_params.meter_id}")
 
+    # если таких данных нет, то пишем в значения нули
+    if result.num_tuples = 0
+      result = []
+      result[0] = {'alarm_value' = 0, 'alarm_on' = 'f'}
+    end
+
     connect.exec("INSERT INTO energies
                 (meter_id, time, total, yesterday, today, period, power, factor, voltage, current,
                 created_at, updated_at, alarm_value, alarm_on)
