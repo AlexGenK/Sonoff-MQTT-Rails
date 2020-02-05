@@ -5,15 +5,16 @@ class MetersController < ApplicationController
 
   def show
     params[:period] ||= 'l24h'
+    params[:by_hour] ||= '0'
     if params[:period] == 'l24h'
-      @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{Time.now - (24 * 60 * 60)}'")
+      @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{Time.now - (24 * 60 * 60)}'", params[:by_hour]=='1')
       @start_time = true
       @end_time = true
     elsif params[:period] == 'given'
       @start_time = MetersController.convert_time(params[:startTime])
       @end_time = MetersController.convert_time(params[:endTime])
       if @start_time && @end_time
-        @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{@start_time}' AND time < '#{@end_time}'")
+        @chart_data = Energy.select_data_for_chart("meter_id = #{@meter.id} AND time > '#{@start_time}' AND time < '#{@end_time}'", params[:by_hour]=='1')
       else
         render :show
       end
@@ -76,6 +77,6 @@ class MetersController < ApplicationController
   end
 
   def meter_params
-    params.require(:meter).permit(:name, :k_trans, :alarm_value, :alarm_on)
+    params.require(:meter).permit(:name, :k_trans, :alarm_value, :alarm_on, :by_hour)
   end
 end

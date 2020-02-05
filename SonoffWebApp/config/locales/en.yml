@@ -44,5 +44,6 @@ en:
     refresh: "Refresh chart"
     invalid_start: "Invalid start time"
     invalid_end: "Invalid end time"
+    by_hour_check: "By hour"
   dialog:
     back: "<<< Back"

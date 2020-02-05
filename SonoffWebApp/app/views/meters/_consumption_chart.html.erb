@@ -27,6 +27,12 @@
 					    <%= t('pow_chart.radio_period') %>
 					  </label>
 				</div>
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name = "by_hour" value='1' id="byHourCheck" <%= params[:by_hour]=="1" ? "checked" : "" %> >
+						<%= t('pow_chart.by_hour_check') %>
+					</label>
+  				</div>
 				<div class='row'>
 				    <div class='col-sm-6'>
 				        <div class="form-group">
