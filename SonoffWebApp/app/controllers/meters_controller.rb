@@ -1,7 +1,9 @@
+require 'csv'
+
 class MetersController < ApplicationController
 
   before_action :set_meter, only: [:destroy, :show, :edit, :update]
-  before_action :set_consumer, only: [:create, :destroy, :edit, :update]
+  before_action :set_consumer, only: [:create, :destroy, :edit, :update, :show]
 
   def show
     params[:period] ||= 'l24h'
@@ -20,6 +22,10 @@ class MetersController < ApplicationController
       end
     end
     @chart_header = MetersController.set_chart_header(params)
+    respond_to do |format|
+      format.html
+      format.csv { send_data chart_data_to_csv, filename: "chart.csv"}
+    end
   end
 
   def create
@@ -59,6 +65,14 @@ class MetersController < ApplicationController
 
   def set_consumer
     @consumer = Consumer.find(params[:consumer_id])
+  end
+
+  def chart_data_to_csv
+    attributes = %w{time power}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+    end
   end
 
   # установка заголовка таблицы
