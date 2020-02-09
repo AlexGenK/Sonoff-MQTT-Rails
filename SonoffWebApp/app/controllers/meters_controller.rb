@@ -69,9 +69,11 @@ class MetersController < ApplicationController
 
   def chart_data_to_csv
     attributes = %w{time power}
-
     CSV.generate(headers: true) do |csv|
       csv << attributes
+      @chart_data[0][:data].to_a.each do |item|
+        csv << item
+      end
     end
   end
 
